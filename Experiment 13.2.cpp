@@ -2,8 +2,17 @@
 #include<conio.h>
 #include<stdlib.h>
 using namespace std;
-int a[10][10],i,j,k,n,stk[10],top,v,visit[10],visited[10],x,y;
+int a[10][10],i,j,k,n,stk[10],top=0,v,visit[10],visited[10],x,y;
+void DFS(int i)
+{
+    int j;
+    cout<<i<<" ";
+    visited[i]=1;
 
+    for(j=0;j<n;j++)
+       if(!visited[j]&&a[i][j]==1)
+            DFS(j);
+}
 main()
 {
 cout <<"enter no. of vertices SIR/MAM!";
@@ -22,15 +31,23 @@ cout<<"sir please enter for undirected grah"<<endl;
 
     }
     }
+    for(i=0;i<n;i++)
+    { cout<<endl;
+        for(j=0;j<n;j++)
+            cout<<a[i][j]<<" ";
+    }
 cout <<"enter initial vertex";
 cin >>v;
 cout <<"AFTER DFS ,SIR ORDER COMES -:"<<endl;
+for(i=0;i<n;i++)
+    visited[i]=0;
+/*
 cout << v <<" ";
 visited[v]=1;
 k=1;
 while(k<n)
 {
-for(j=n;j>=1;j--)
+for(j=n;j>0;j--)
 if(a[v][j]!=0 && visited[j]!=1 && visit[j]!=1)
 {
 visit[j]=1;
@@ -40,6 +57,9 @@ top++;
 v=stk[--top];
 cout<<v << " ";
 k++;
-visit[v]=0; visited[v]=1;
+visit[v]=0;
+visited[v]=1;
 }
+*/
+DFS(v);
 }
